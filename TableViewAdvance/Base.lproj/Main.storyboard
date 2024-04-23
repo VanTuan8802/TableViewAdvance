@@ -17,32 +17,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="azf-Fi-oWO">
-                                <rect key="frame" x="16" y="59" width="361" height="200"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="vIG-J3-TbG"/>
-                                </constraints>
-                            </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="syj-kq-arp">
-                                <rect key="frame" x="16" y="291" width="361" height="527"/>
+                                <rect key="frame" x="16" y="59" width="361" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.96862745098039216" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="syj-kq-arp" firstAttribute="top" secondItem="azf-Fi-oWO" secondAttribute="bottom" constant="32" id="8XW-fh-BbF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="syj-kq-arp" secondAttribute="bottom" id="BRh-py-Yji"/>
                             <constraint firstItem="azf-Fi-oWO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Hzw-Qo-oOa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="azf-Fi-oWO" secondAttribute="trailing" constant="16" id="N5f-LZ-hkI"/>
-                            <constraint firstItem="syj-kq-arp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="NGg-QQ-za5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="azf-Fi-oWO" secondAttribute="bottom" id="bnA-zX-oSx"/>
                             <constraint firstItem="azf-Fi-oWO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="uL0-Fx-7cz"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="syj-kq-arp" secondAttribute="trailing" constant="16" id="xdg-PB-ahv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="tableViewA" destination="azf-Fi-oWO" id="p6V-De-yif"/>
-                        <outlet property="tableViewB" destination="syj-kq-arp" id="8N5-fC-X5w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

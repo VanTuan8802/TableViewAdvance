@@ -19,7 +19,6 @@ struct DataMock {
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableViewA: UITableView!
-    @IBOutlet weak var tableViewB: UITableView!
     var listDataA = [TableViewA]()
     let dataMock = DataMock()
     
@@ -48,52 +47,74 @@ class ViewController: UIViewController {
         tableViewA.dataSource = self
         tableViewA.register(UINib(nibName: "OneCellTableViewCell", bundle: nil), forCellReuseIdentifier: "OneCellTableViewCell")
         tableViewA.register(UINib(nibName: "TwoCellTableViewCell", bundle: nil), forCellReuseIdentifier: "TwoCellTableViewCell")
-        
-        
-        tableViewB.dataSource = self
-        tableViewB.delegate = self
-        tableViewB.register(UINib(nibName: "OneCellTableViewCell", bundle: nil), forCellReuseIdentifier: "OneCellTableViewCell")
-        tableViewB.register(UINib(nibName: "TwoCellTableViewCell", bundle: nil), forCellReuseIdentifier: "TwoCellTableViewCell")
     }
     
 }
 
 extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        let title = UILabel()
+        title.text = section == 0 ? "Section 1" : "Section 2"
+        title.textColor = .black
+        
+        let showBtn = UIButton()
+        showBtn.setImage(UIImage(named: "show"), for: .normal)
+        
+        headerView.addSubview(title)
+        headerView.addSubview(showBtn)
+        
+        title.snp.makeConstraints { make in
+            make.leading.equalTo(headerView).offset(24)
+            make.centerY.equalTo(headerView)
+        }
+        
+        showBtn.snp.makeConstraints { make in
+            make.trailing.equalTo(headerView).offset(-24)
+            make.centerY.equalTo(headerView)
+        }
+        
+        showBtn.addTarget(self, action: #selector(toggleSection(_:)), for: .touchUpInside)
+        showBtn.tag = section
+        
+        return headerView
+    }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40.0
+    }
+    
+    @objc func toggleSection(_ sender: UIButton) {
+        let section = sender.tag
+        
+       
+    }
 }
 
 
 extension ViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == tableViewA {
-            return listDataA.count
+        if section == 0 {
+            return 3
         } else {
-            return 20
+            return listDataA.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == tableViewA {
-            let data = listDataA[indexPath.row]
-            if data.listCell.count > 1 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "TwoCellTableViewCell", for: indexPath) as! TwoCellTableViewCell
-                cell.bindData(leftCell: data.listCell.first!, rightCell: data.listCell.last!)
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "OneCellTableViewCell", for: indexPath) as! OneCellTableViewCell
-                cell.bindData(cell: data.listCell.first!)
-                return cell
-            }
+        let data = listDataA[indexPath.row]
+        if data.listCell.count > 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TwoCellTableViewCell", for: indexPath) as! TwoCellTableViewCell
+            cell.bindData(leftCell: data.listCell.first!, rightCell: data.listCell.last!)
+            return cell
         } else {
-            if indexPath.row == 1 || indexPath.row == 4 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "TwoCellTableViewCell", for: indexPath)
-                
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "OneCellTableViewCell", for: indexPath)
-                return cell
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OneCellTableViewCell", for: indexPath) as! OneCellTableViewCell
+            cell.bindData(cell: data.listCell.first!)
+            return cell
         }
     }
 }
